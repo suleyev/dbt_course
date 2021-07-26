@@ -36,3 +36,9 @@ models:
       # Applies to all files under models/example/
       example:
           materialized: view
+      marts:
+          core:
+              materialized: table
+      staging:
+          jaffle_shop:
+              materialized: view
