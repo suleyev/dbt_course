@@ -1,5 +1,5 @@
 {{
-    config(materialized="table")
+    config(materialized="table", schema="jaffle_shop")
 }}
 
 WITH customers AS (
