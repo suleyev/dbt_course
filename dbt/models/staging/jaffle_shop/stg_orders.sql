@@ -7,7 +7,7 @@ WITH orders AS (
          , user_id AS customer_id
          , order_date
          , status
-    FROM jaffle_shop.orders
+    FROM {{ source('jaffle_shop', 'orders') }}
 )
 
 SELECT * FROM orders
