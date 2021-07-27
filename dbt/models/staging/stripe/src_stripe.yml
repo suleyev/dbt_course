@@ -7,7 +7,7 @@ sources:
     tables:
       - name: payments
         description: Raw payments data.
-        loaded_at_field: created
+        loaded_at_field: _batched_at
         freshness:
           warn_after: { count: 12, period: hour }
           error_after: { count: 24, period: hour }
