@@ -4,17 +4,32 @@ models:
   - name: stg_customers
     columns:
       - name: customer_id
+        description: The primary key for customers.
+        type: integer
         tests:
           - unique
           - not_null
+      - name: first_name
+        description: Customer's first name.
+        type: varchar(50)
+      - name: last_name
+        description: Customer's last name.
+        type: varchar(50)
   - name: stg_orders
     columns:
-      - name: status
-        tests:
-          - accepted_values:
-              values: ['completed', 'shipped', 'returned', 'placed', 'return_pending']
+      - name: order_id
+        description: Primary key for orders.
+        type: integer
       - name: customer_id
         tests:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+      - name: order_date
+        description: Order creation date
+        type: date
+      - name: status
+        description: "{{ doc('order_status') }}"
+        tests:
+          - accepted_values:
+              values: ['completed', 'shipped', 'returned', 'placed', 'return_pending']
