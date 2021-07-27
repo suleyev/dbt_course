@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimension table with information about customers.
+    columns:
+      - name: customer_id
+        description: The primary key for customers.
+        type: integer
+      - name: first_name
+        description: Customer's first name.
+        type: varchar(50)
+      - name: last_name
+        description: Customer's last name.
+        type: varchar(50)
+      - name: first_order_date
+        description: First order creation date.
+        type: date
+      - name: most_recent_order_date
+        description: The most recent order creation date.
+        type: date
+      - name: number_of_orders
+        description: Total number of orders created by customer.
+        type: integer
+      - name: lifetime_value
+        description: Total amount of orders created by customer.
+        type: bigint
+  - name: fct_orders
+    description: Fact table with information about orders.
+    columns:
+      - name: order_id
+        description: Foreign key to stg_orders.order_id.
+        type: integer
+      - name: customer_id
+        description: Foreign key to stg_customers.customer_id.
+        type: integer
+      - name: amount
+        description: Amount of orders.
+        type: integer

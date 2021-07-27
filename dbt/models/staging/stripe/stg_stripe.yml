@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_payments
+    description: Staged payments data from stripe. Contains only payments with the status "success"
+    columns:
+      - name: payment_id
+        description: Primary key for payments.
+        type: integer
+      - name: order_id
+        description: Foreign key to stg_orders.order_id.
+        type: integer
+      - name: amount
+        description: Amount of payment in cents.
+        type: integer
