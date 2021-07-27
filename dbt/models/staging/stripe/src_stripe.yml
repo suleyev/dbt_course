@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: Payment system database.
+    database: dbt_project
+    tables:
+      - name: payments
+        description: Raw payments data.
+        loaded_at_field: created
+        freshness:
+          warn_after: { count: 12, period: hour }
+          error_after: { count: 24, period: hour }
+        columns:
+          - name: id
+            description: Primary key for payments.
+            type: integer
+          - name: orderid
+            description: Foreign key to orders.id.
+            type: integer
+          - name: paymentmethod
+            description: "{{ doc('payments_methods') }}"
+            type: varchar(50)
+          - name: status
+            description: "{{ doc('payments_statuses') }}"
+            type: varchar(50)
+          - name: amount
+            description: Amount of payment in cents.
+            type: integer
+          - name: created
+            description: Payment creation date.
+            type: date
