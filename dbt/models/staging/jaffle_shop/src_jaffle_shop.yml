@@ -2,7 +2,40 @@ version: 2
 
 sources:
   - name: jaffle_shop
+    description: Application database.
     database: dbt_project
     tables:
       - name: customers
+        description: Raw customers data.
+        columns:
+          - name: id
+            description: Primary key for customers
+            type: integer
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: Customer's first name.
+            type: varchar(50)
+          - name: last_name
+            description: Customer's last name.
+            type: varchar(50)
+
       - name: orders
+        description: Raw orders data.
+        columns:
+          - name: id
+            description: Primary key for orders.
+            type: integer
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: Foreign key to customers.id.
+            type: integer
+          - name: order_date
+            description: Order creation date
+            type: date
+          - name: status
+            description: "{{ doc('order_status') }}"
+            type: varchar(50)
