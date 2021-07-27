@@ -1,4 +1,5 @@
 import os
+import time
 import urllib.request
 from datetime import datetime
 
@@ -66,8 +67,10 @@ if __name__ == '__main__':
         'jaffle_shop.customers': 'http://dbt-tutorial-public.s3-us-west-2.amazonaws.com/jaffle_shop_customers.csv',
         'stripe.payments': 'http://dbt-tutorial-public.s3-us-west-2.amazonaws.com/stripe_payments.csv'
     }
+    print('Waiting 30 sec for DB starting...')
+    time.sleep(30)
     print('Connecting to DB...')
-    with psycopg2.connect("host='localhost' port='5432' dbname='dbt_project' user='dbt' password='dbtcourse'") as conn, \
+    with psycopg2.connect("host='postgres' port='5432' dbname='dbt_project' user='dbt' password='dbtcourse'") as conn, \
             conn.cursor() as curs:
         print('Connection established')
         print('Creating tables')
