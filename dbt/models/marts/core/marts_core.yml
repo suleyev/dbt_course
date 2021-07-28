@@ -37,3 +37,6 @@ models:
       - name: amount
         description: Amount of orders.
         type: integer
+  - name: int_payments__pivoted
+    description: Statistics with total sum of payments for every payment method by day
+
